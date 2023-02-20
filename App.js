@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import CurreWeatherScreen from "./components/CurrentWeatherScreen";
+import WeatherForecastScreen from "./components/WeatherForecastScreen";
+import SettingScreen from "./components/SettingScreen";
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-export default function App() {
+const Stack = createStackNavigator()
+const Drawer = createDrawerNavigator()
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Current weather" component={CurreWeatherScreen} />
+        <Drawer.Screen name="Forecast" component={WeatherForecastScreen} />
+        <Drawer.Screen name="Settings" component={SettingScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
